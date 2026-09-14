@@ -8,15 +8,16 @@ import {
 } from '@livekit/components-react';
 import { BackgroundBlur, VirtualBackground } from '@livekit/track-processors';
 import { isLocalTrack, LocalTrackPublication, Track } from 'livekit-client';
-import Desk from '../public/background-images/samantha-gades-BlIhVfXbi9s-unsplash.jpg';
-import Nature from '../public/background-images/ali-kazal-tbw_KQE3Cbg-unsplash.jpg';
-
 // Background image paths
-const BACKGROUND_IMAGES = [
-  { name: 'Desk', path: Desk },
-  { name: 'Nature', path: Nature },
-];
-
+//
+// Upstream tracked these images with Git LFS, and a fork does not inherit LFS
+// objects -- the checkout gets 130-byte pointer files, which Next.js then fails
+// to parse as JPEGs. Removed for the initial deployment. Background BLUR is
+// unaffected and still works.
+//
+// To restore: commit real .jpg files under public/background-images/ (no LFS),
+// import them here, and add entries below.
+const BACKGROUND_IMAGES: { name: string; path: { src: string } }[] = [];
 // Background options
 type BackgroundType = 'none' | 'blur' | 'image';
 
