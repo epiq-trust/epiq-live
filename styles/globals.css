@@ -2,9 +2,27 @@
   box-sizing: border-box;
 }
 
+/* EPIQ Live palette, sampled from the logo artwork.
+     #04aaf3  LIVE blue     -- primary accent
+     #0b3957  blue shadow   -- borders
+     #0c1526  navy ground   -- app background, matches the logo's own backdrop
+     #d6ac23  gold          -- EPIQ coin
+     #fdfdfd  white         -- EPIQ wordmark
+   LiveKit's components read these custom properties, so overriding them here
+   re-themes the whole app without touching the component library. */
+:root {
+  --lk-bg: #0c1526;
+  --lk-bg2: #131f33;
+  --lk-bg3: #1a2941;
+  --lk-bg4: #22344f;
+  --lk-accent-bg: #04aaf3;
+  --lk-accent-fg: #0c1526;
+  --lk-border-color: #0b3957;
+}
+
 html {
   color-scheme: dark;
-  background-color: #111;
+  background-color: #0c1526;
 }
 
 html,
@@ -52,14 +70,14 @@ footer {
 
 footer a,
 h2 a {
-  color: #ff6352;
-  text-decoration-color: #a33529;
+  color: #04aaf3;
+  text-decoration-color: #0b3957;
   text-underline-offset: 0.125em;
 }
 
 footer a:hover,
 h2 a {
-  text-decoration-color: #ff6352;
+  text-decoration-color: #04aaf3;
 }
 
 h2 a {
