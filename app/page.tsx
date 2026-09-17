@@ -165,18 +165,8 @@ export default function Page() {
     <>
       <main className={styles.main} data-lk-theme="default">
         <div className="header">
-          <img src="/images/livekit-meet-home.svg" alt="LiveKit Meet" width="360" height="45" />
-          <h2>
-            Open source video conferencing app built on{' '}
-            <a href="https://github.com/livekit/components-js?ref=meet" rel="noopener">
-              LiveKit&nbsp;Components
-            </a>
-            ,{' '}
-            <a href="https://livekit.io/cloud?ref=meet" rel="noopener">
-              LiveKit&nbsp;Cloud
-            </a>{' '}
-            and Next.js.
-          </h2>
+          <img src="/images/livekit-meet-home.svg" alt="EPIQ Live" width="240" height="160" />
+          <h2>Private gatherings for EPIQ Society.</h2>
         </div>
         <Suspense fallback="Loading">
           <Tabs>
@@ -186,13 +176,12 @@ export default function Page() {
         </Suspense>
       </main>
       <footer data-lk-theme="default">
-        Hosted on{' '}
-        <a href="https://livekit.io/cloud?ref=meet" rel="noopener">
-          LiveKit Cloud
+        <a href="https://life.epiq.one" rel="noopener">
+          EPIQ Society
         </a>
-        . Source code on{' '}
-        <a href="https://github.com/livekit/meet?ref=meet" rel="noopener">
-          GitHub
+        . Built on{' '}
+        <a href="https://livekit.io" rel="noopener">
+          LiveKit
         </a>
         .
       </footer>
