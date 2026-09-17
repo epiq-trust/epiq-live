@@ -17,6 +17,11 @@ export async function GET(request: NextRequest) {
     const participantName = request.nextUrl.searchParams.get('participantName');
     const metadata = request.nextUrl.searchParams.get('metadata') ?? '';
     const region = request.nextUrl.searchParams.get('region');
+    // Host moderator key. Compared against HOST_KEY, which is set in the hosting
+    // environment. If HOST_KEY is unset, isHost is false -- a missing variable must
+    // never make everyone a moderator.
+    const hostKey = request.nextUrl.searchParams.get('hostKey');
+    const isHost = !!process.env.HOST_KEY && hostKey === process.env.HOST_KEY;
     if (!LIVEKIT_URL) {
       throw new Error('LIVEKIT_URL is not defined');
     }
@@ -44,6 +49,7 @@ export async function GET(request: NextRequest) {
         metadata,
       },
       roomName,
+      isHost,
     );
 
     // Return connection details
@@ -66,7 +72,11 @@ export async function GET(request: NextRequest) {
   }
 }
 
-function createParticipantToken(userInfo: AccessTokenOptions, roomName: string) {
+function createParticipantToken(
+  userInfo: AccessTokenOptions,
+  roomName: string,
+  isHost: boolean = false,
+) {
   const at = new AccessToken(API_KEY, API_SECRET, userInfo);
   at.ttl = '5m';
   const grant: VideoGrant = {
@@ -75,6 +85,8 @@ function createParticipantToken(userInfo: AccessTokenOptions, roomName: string) 
     canPublish: true,
     canPublishData: true,
     canSubscribe: true,
+    // roomAdmin permits muting and removing other participants.
+    roomAdmin: isHost,
   };
   at.addGrant(grant);
   return at.toJwt();
